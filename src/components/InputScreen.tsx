@@ -39,12 +39,12 @@ function InputScreen({ onSubmit }: InputScreenProps) {
             value={value}
             onChange={(event) => setValue(event.target.value)}
             placeholder="e.g. Plan my next writing project"
-            className="w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-base text-white outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+            className="w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-base text-white outline-none transition duration-200 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
           />
         </label>
         <button
           type="submit"
-          className="w-full rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/60"
+          className="w-full rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-semibold text-slate-950 transition duration-200 hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/60"
         >
           Begin flow
         </button>

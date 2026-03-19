@@ -15,16 +15,22 @@ function generateBranches(text: string): string[] {
 
 const screenVariants = {
   enter: (direction: Direction) => ({
-    x: direction === 'forward' ? 80 : -80,
+    x: direction === 'forward' ? 56 : -56,
     opacity: 0,
+    scale: 0.985,
+    filter: 'blur(6px)',
   }),
   center: {
     x: 0,
     opacity: 1,
+    scale: 1,
+    filter: 'blur(0px)',
   },
   exit: (direction: Direction) => ({
-    x: direction === 'forward' ? -80 : 80,
+    x: direction === 'forward' ? -56 : 56,
     opacity: 0,
+    scale: 0.985,
+    filter: 'blur(6px)',
   }),
 }
 
@@ -101,22 +107,24 @@ function App() {
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-8 text-slate-50 sm:px-6 lg:px-8">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl flex-col justify-center">
-        <div className="mb-6 flex items-center justify-between gap-4">
-          <div className="max-w-3xl flex-1">
-            {path.length > 0 ? (
-              <Breadcrumb path={path} />
-            ) : (
-              <p className="text-sm text-slate-500">No branch selected yet.</p>
-            )}
+        <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0 flex-1 space-y-2">
+            <button
+              type="button"
+              onClick={handleBack}
+              disabled={!canGoBack}
+              className="inline-flex w-fit items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-slate-200 transition duration-200 hover:border-cyan-400/60 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-300/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-white/10"
+            >
+              Back
+            </button>
+            <div className="max-w-4xl">
+              {path.length > 0 ? (
+                <Breadcrumb path={path} />
+              ) : (
+                <p className="text-xs tracking-wide text-slate-500">No branch selected yet.</p>
+              )}
+            </div>
           </div>
-          <button
-            type="button"
-            onClick={handleBack}
-            disabled={!canGoBack}
-            className="rounded-2xl border border-white/10 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-cyan-400/60 hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-white/10"
-          >
-            Back
-          </button>
         </div>
 
         <div className="relative flex min-h-[28rem] items-center justify-center overflow-hidden">
@@ -128,7 +136,7 @@ function App() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.28, ease: 'easeInOut' }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               className="w-full"
             >
               {!currentNode ? (

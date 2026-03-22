@@ -15,16 +15,16 @@ function Breadcrumb({ path }: BreadcrumbProps) {
             <li key={node.id} className="flex min-w-0 items-center gap-2 sm:gap-2.5">
               <span
                 className={[
-                  'truncate whitespace-nowrap rounded-full border px-3 py-1.5 transition-colors',
+                  'truncate whitespace-nowrap rounded-full border px-3.5 py-1.5 transition-colors',
                   isLast
-                    ? 'max-w-[16rem] border-cyan-400/20 bg-cyan-400/10 font-medium text-cyan-100 sm:max-w-[22rem]'
-                    : 'max-w-[10rem] border-white/10 bg-white/[0.03] text-slate-400 sm:max-w-[14rem]',
+                    ? 'max-w-[16rem] border-orange-300/20 bg-gradient-to-r from-orange-400/16 via-rose-400/14 to-purple-400/16 font-medium text-orange-50 shadow-[0_10px_24px_-18px_rgba(251,146,60,0.75)] sm:max-w-[24rem]'
+                    : 'max-w-[10rem] border-white/10 bg-white/[0.04] text-slate-300/80 sm:max-w-[15rem]',
                 ].join(' ')}
                 title={node.text}
               >
                 {node.text}
               </span>
-              {!isLast && <span className="text-slate-600">/</span>}
+              {!isLast && <span className="text-slate-600/90">/</span>}
             </li>
           )
         })}
